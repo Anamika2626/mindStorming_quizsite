@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block title %}mindStorming - Search users {% endblock title %}
+
+ {% block content %}
+        <!----------------------------Search results-------------------------->
+
+   <div class="container-fluid">
+      <div class="row row-cols-sm-3 row-cols-md-3 rounded text-center pt-5">
+         {% if users|length == 0 %}
+         <div class="col-lg-2 position-relative">
+            <h4 class="text-center text-danger">No such User exists</h4>
+         </div>
+         {% else %}
+         {% for user in users %}
+         <div class="col-lg-2 position-relative">
+            <img src="{{user.profile.profile_img.url}}" class="rounded-circle" width="120" height="120" alt="user-profile">
+            <h4 class="fw-normal">@{{user.username}}</h4>
+            <p>{{user.profile.bio|truncatewords:5}}</p>
+            <p class="pb-4"><a class="btn btn-view" href="{% url 'profile' user.username %}">View Profile >></a></p>
+         </div>
+         {% endfor %}
+         {% endif %}
+        </div>
+   </div>
+
+ {% endblock content %}  

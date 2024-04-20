@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block title %}mindStorming - LeaderBoard {% endblock title %}
+
+ {% block content %}
+        <!----------------------------Leaderboard-------------------------->
+
+   <div class="container-fluid">
+      <div class="row row-cols-sm-3 row-cols-md-3 rounded text-center pt-5" style="background-color: #eef7fa;">
+         {% if leaderboard_users|length == 0 %}
+         <div class="col-lg-2 position-relative">
+            <h4 class="text-center text-danger">No user available on leaderboard</h4>
+         </div>
+         {% else %}
+         {% for rank in leaderboard_users %}
+         <div class="col-lg-2 position-relative">
+            <img src="{{rank.user.profile.profile_img.url}}" class="rounded-circle" width="120" height="120" alt="user-profile">
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-circle border border-light bg-danger">
+            {{forloop.counter}}</span>
+            <h4 class="fw-normal">@{{rank.user.username}}</h4>
+            <p>{{rank.user.profile.bio|truncatewords:5}}</p>
+            <p class="pb-4"><a class="btn btn-view" href="{% url 'profile' rank.user.username %}">View Profile >></a></p>
+         </div>
+         {% endfor %}
+         {% endif %}
+        </div>
+   </div>
+
+ {% endblock content %}  

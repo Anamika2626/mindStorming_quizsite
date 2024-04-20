@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Cardo:wght@700&family=Rajdhani&family=Berkshire+Swash&family=Dosis&family=Grenze+Gotisch:wght@500&family=IM+Fell+English+SC&display=swap');
+
+*{
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.btn-search{
+    border-color: #7EC8E3;
+    color: #7EC8E3;
+}
+.btn-search:hover{
+    background-color: #7EC8E3;
+    color: white;
+}
+.btn-login{
+    background-color: #7EC8E3;
+    color: white;
+}
+.btn-login:hover{
+    background-color: #6cc1e0;
+    color: white;
+}
+
+.btn-quiz{
+    background-color: #000c66;
+    color: white;
+}
+.btn-quiz:hover{
+    background-color: #061796;
+    color: white;
+}
+
+.btn-signup{
+    background-color: #7EC8E3;
+    color: white;
+}
+.btn-signup:hover{
+    background-color: #6cc1e0;
+    color: white;
+}
+
+.btn-view{
+    background-color: #1a1f46;
+    color: white;
+}
+.btn-view:hover{
+    background-color: #242b61;
+    color: white;
+}
+
+/*----------------------------------------card header-------------------------------*/
+.card-h{
+    background-image: linear-gradient(#6ec9eb, #a5d7e9);
+}

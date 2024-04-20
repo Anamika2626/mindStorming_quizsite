@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+
+{% block title %}mindStorming - {{user_profile.username.username}}'s Profile{% endblock title %}
+
+    {% block content %}
+        <!-------------------------------Profile--------------------------->
+        <h3 class="display-5 text-center mt-5">{{user_profile.username.username}}'s Profile</h3>
+        <div class="container text-center">
+            {% if request.user.username == user_profile.username.username %}
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a href="{% url 'delete_profile' %}" type="button" class="btn btn-danger">Delete</a>
+                <a href="{% url 'edit_profile' %}" type="button" class="btn btn-outline-primary">Edit</a>
+            </div>
+            {% endif %}
+
+            <div class="container text-center mt-4">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{user_profile.profile_img.url}}" class="rounded-circle" alt="profile-img" width="140" height="140">
+                        <h4 class="fs-3 mt-1">@{{user_profile.username.username}}</h4>
+                    </div>
+                    <div class="col">
+                        <h3 class="fw-bold">{{user_profile.full_name}}</h3>
+                        <p class="fs-5">{{user_profile.gender}}</p>
+                        <p class="fs-5">{{user_profile.location}}</p>
+                        <p class="fs-5">{{user_profile.bio}}</p>
+                        <p class="fs-5"><a href="mailto:{{user_profile.username.mail}}">{{user_profile.username.email}}</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <div class="container">
+               <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h4><b>Quiz Attended</b></h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Quiz</th>
+                                <th scope="col">Marks</th>
+                                <th scope="col">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for submission in submissions %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td title="{{submission.quiz.title}}">{{submission.quiz.title|truncatewords:7}}</td>
+                                <td>{{submission.score}}/{{submission.quiz.question_set.all|length}}</td>
+                                <td>{{submission.submitted_at|timesince}} ago</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+               </div>
+            </div>
+        </div>
+    {% endblock content %}
+
+      

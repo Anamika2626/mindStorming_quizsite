@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}mindStorming - Register Page{% endblock title %}
+    {% block content %}
+        <!----------------------------------------Register page-------------------------->
+        <h1 class="display-4 text-center mt-5 mb-4">Register</h1>
+
+        <div class="container">
+            <div class="row container">
+                <div class="col"></div>
+                <div class="col-sm-12 col-md-8 col-lg-5">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label visually-hidden">Email</label>
+                            <input type="email" name="email" class="form-control" id="validateEmail" placeholder="Enter your Email" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="validateUsername" class="form-label visually-hidden">Username</label>
+                            <input type="username" name="username" class="form-control" id="validateUsername" placeholder="Enter your Username" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="validatePassword" class="form-label visually-hidden">Password</label>
+                            <input type="password" name="password" class="form-control" id="validatePassword" placeholder="Enter your Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="validateConfirmPassword" class="form-label visually-hidden">Confirm Password</label>
+                            <input type="password" name="repeat_password" class="form-control" id="validateConfirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <div>
+                            {% for message in messages %}
+                            <h6 class="text-danger fw-bold">{{message}}</h6>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                            <label class="form-check-label" for="exampleCheck1"><a href="{% url 'terms_conditions' %}">Terms & Conditions</a></label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    <p class="text-center mt-3">Already have an account?<a href="{% url 'login' %}" class="fw-bold" style="color: blue; text-decoration: none;"> Sign In</a></p>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    
+        <!-- <script src="{% static 'javascript/script.js' %}"></script> -->
+
+    {% endblock content %}

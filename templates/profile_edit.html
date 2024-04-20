@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block title %}mindStorming - {{request.user.username}}'s Profile Edit{% endblock title %}
+
+{% block content %}
+
+<!----------------------------------------Edit Profile--------------------------------->
+
+<div class="container">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-sm-12 col-md-6">
+        <form method="POST" action="" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="my-4 d-flex justify-content-center">
+                <img src="{{user_profile2.profile_img.url}}" alt="profile_img" width="150" height="150" class="rounded-circle">
+          </div>
+        
+          <div class="mb-3">
+            {% for message in messages %}
+            <h6 class="text-danger fw-bold">{{message}}</h6>
+            {% endfor %}
+          </div>
+          <div class="mb-3">
+            <input type="file" name="profile_img" class="form-control" id="exampleInputImage">
+          </div>
+          <div class="mb-3">
+            <input type="text" name="username" value="{{user_profile2.username.username}}" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp"
+              placeholder="Username">
+          </div>
+          <div class="mb-3">
+            <input type="text" name="first_name" value="{{user_profile2.username.first_name}}" class="form-control" id="exampleInputFirstName" placeholder="First Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" name="last_name" value="{{user_profile2.username.last_name}}" class="form-control" id="exampleInputLastName" placeholder="Last Name" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" name="bio" id="exampleFormControlTextarea1" rows="3" placeholder="Your Bio">{{user_profile2.bio}}</textarea>
+          </div>
+          <div class="mb-3">
+            <select class="form-select form-control" name="gender" id="exampleInputGender" aria-label="Default select example">
+                <option selected>Choose Your Gender</option>
+                <option {% if user_profile2.gender == 'Male' %}selected{% endif %} value="Male">Male</option>
+                <option {% if user_profile2.gender == 'Female' %}selected{% endif %} value="Female">Female</option>
+                <option {% if user_profile2.gender == 'Other' %}selected{% endif %} value="Other">Other</option>
+                <option {% if user_profile2.gender == 'Prefer not to say' %}selected{% endif %} value="Prefer not to say">Prefer not to say</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" value="{{user_profile2.username.email}}" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
+              placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" name="location" value="{{user_profile2.location}}" class="form-control" id="exampleInputLocation" placeholder="Location">
+          </div>
+          
+          <button type="submit" class="btn btn-success">Save Profile</button>
+        </form>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+
+{% endblock content %}
